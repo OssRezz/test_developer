@@ -1,0 +1,20 @@
+SELECT SUM(O.Quantity) as 'Productos ordenados' FROM `orders` AS O
+
+SELECT P.Name AS 'Producto', C.Name AS 'Cliente', O.Quantity AS 'Cantidad', O.Total FROM `orders` AS O
+INNER JOIN product AS P ON P.ProductId=O.ProductId
+INNER JOIN client AS C ON C.ClientId=O.ClientId
+WHERE O.ProductId = 1 OR P.Name = "Televisor"
+
+SELECT P.Name AS 'Producto', P.Reference AS 'Referencia', SUM(O.Quantity) AS 'Cantidad', SUM(O.Total) AS 'Total' FROM `orders` AS O
+INNER JOIN product AS P ON P.ProductId=O.ProductId
+INNER JOIN client AS C ON C.ClientId=O.ClientId
+GROUP BY O.ProductId
+
+SELECT C.Name AS 'Cliente',C.LastName AS 'Apellido',SUM(O.Total) AS Total FROM `orders` AS O
+INNER JOIN product AS P ON P.ProductId=O.ProductId
+INNER JOIN client AS C ON C.ClientId=O.ClientId
+WHERE O.Total > 10000000
+GROUP BY O.ClientId
+
+
+La llave primera se utiliza para identificar una fila y el indice unico se utiliza para que el registro del campo sea unico, no pueden ser dos iguales. La clave primaria tiene la misma funcionalidad, la diferencia es que la clave primaria se utiliza para identificar un registro.
