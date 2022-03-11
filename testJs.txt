@@ -1,0 +1,36 @@
+Prueba Javascript
+Dada un fecha en formato d-mmmm-yyyy, se debe hacer un GET a la siguiente API
+
+Para obtener los datos, realize un request GET al la url 'http://34.194.78.120/api/test/stocks?date={date}'
+
+Por ejemplo, para la fecha '5 de enero de 2000' invoque 'http://34.194.78.120/api/test/stocks?date=5-January-2000'
+
+La respuesta es un JSON con los siguientes datos:
+
+page: Página actual de resultados
+per_page: Máximo número de resultados por página.
+total: Total de resultados.
+total_pages: Total de páginas de resultados.
+data: Registro de existencias, con la siguiente info:
+date - Fecha de consulta
+open - Valor con que abre
+high - Máximo valor
+low - Mínimo valor
+close - Valor con que cierra
+
+Nota: Se recomienda usar la libreria JQuery para hacer el request ajax.
+
+Cree la siguiente función:
+async function getStockInformation(range) .
+
+Donde:
+
+range: Es el rango de fechas para la consulta, json de la forma
+
+{"dateFrom":"2000-01-05","dateTo":"2000-01-07"}
+
+Respuesta de la función:
+
+El total de registros por cada dia dentro del rango, json de la forma
+
+{"5-January-2000":1, "6-January-2000":1, "7-January-2000":1}
