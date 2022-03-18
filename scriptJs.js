@@ -1,11 +1,11 @@
-getStockInformation({ dateFrom: "2000-01-05", dateTo: "2000-02-07" });
+getStockInformation({ dateFrom: "2000-01-05", dateTo: "2000-01-07" });
 
 async function getStockInformation(range) {
+  const arregloRespuesta = [];
   //Formateamos la fecha y agregamos el rango de fechas a un array
   const fechaInicio = new Date(range.dateFrom);
   const fechaFin = new Date(range.dateTo);
-  const dateRange = [];
-  const arregloRespuesta = [];
+  const dateRange = []; //Con este array agregamos las fechas formateadas
   const monthNames = [
     "January",
     "February",
@@ -36,9 +36,9 @@ async function getStockInformation(range) {
       type: "GET",
       url: "http://34.194.78.120/api/test/stocks?date=" + dateRange[i],
       dataType: "json",
-      success: function (result, status, xhr) {
+      success: function (result) {
         if (result.code != 200) {
-          arregloRespuesta.push(result.data[0].date);
+          arregloRespuesta.push({ [result.data[0].date]: result.total });
         }
       },
       error: function (xhr, status, error) {
@@ -48,4 +48,6 @@ async function getStockInformation(range) {
   }
 
   console.log(arregloRespuesta);
+  return arregloRespuesta;
 }
+
